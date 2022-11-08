@@ -1,0 +1,24 @@
+<div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Search by Name</span>
+    <input #name (keyup)="0" type="text"  class="form-control" placeholder="Enter name" aria-label="Username" aria-describedby="basic-addon1" />
+</div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employeeService.employees | search: name.value">
+        <th scope="row">{{employee.id}}</th>
+        <td><a [routerLink]="'/update/' + employee.id" routerLinkActive="active" ariaCurrentWhenActive="page">{{employee.name | titlecase | endLetterCapital}}</a></td>
+        <td>{{employee.salary}}</td>
+        <td>{{today | date:'yy/MM'}}</td>
+      </tr>
+      
+    </tbody>
+  </table>
